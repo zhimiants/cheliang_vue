@@ -7,6 +7,9 @@ const app = createApp(App)
 import ElementPlus from 'element-plus'
 import './assets/style/element-variables.scss'
 
+// 引入highlight.js样式
+import 'highlight.js/styles/atom-one-dark.css'
+
 // 国际化
 import i18n from '@/i18n'
 

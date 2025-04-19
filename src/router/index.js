@@ -7,7 +7,7 @@ import login from './modules/login'
 import lock from './modules/lock'
 import home from './modules/home'
 import test from './modules/test'
-
+import aichat from './modules/aichat'
 import system from './modules/system'
 import product from './modules/product'
 import order from './modules/order'
@@ -19,7 +19,7 @@ import order from './modules/order'
 // export const asyncRoutes = [...test]
 
 //固定的菜单
-export const fixedRoutes = [...home]
+export const fixedRoutes = [...home,...aichat]
 //动态的菜单
 export const asyncRoutes = [...system,...product,...order]
 const router = createRouter({
