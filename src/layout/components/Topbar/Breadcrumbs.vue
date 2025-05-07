@@ -14,7 +14,7 @@
       :class="{ no_link: index === breadcrumbs.length - 1 }"
       :to="index < breadcrumbs.length - 1 ? item.path : ''"
     >
-      {{ $t(item.meta.title) }}
+      {{ item.meta && item.meta.title ? $t(item.meta.title) : '' }}
     </el-breadcrumb-item>
   </el-breadcrumb>
 </template>
@@ -45,12 +45,15 @@ export default defineComponent({
     )
 
     const getBreadcrumbs = route => {
-      const home = [{ path: '/', meta: { title: proxy.$t('menu.homepage') } }]
+      // 确保首页使用安全的翻译方式
+      const home = [{ path: '/', meta: { title: 'menu.homepage' } }]
+      
       if (route.name === 'home') {
         return home
       } else {
+        // 过滤有效的路由项
         const matched = route.matched.filter(
-          item => !!item.meta && !!item.meta.title
+          item => item && item.meta && item.meta.title
         )
 
         return [...home, ...matched]
@@ -64,7 +67,7 @@ export default defineComponent({
     watch(
       route,
       newRoute => {
-        route.value.meta.truetitle = proxy.$t(route.value.meta.title)
+        // 安全地获取面包屑
         breadcrumbs.value = getBreadcrumbs(newRoute)
         emit('on-breadcrumbs-change', breadcrumbs.value.length > 1)
       },

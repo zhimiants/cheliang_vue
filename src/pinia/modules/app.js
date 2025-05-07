@@ -10,7 +10,7 @@ const COLLAPSE = 'VEA-COLLAPSE'
 
 export const useApp = defineStore('app', {
   state: () => ({
-    title: 'Vue3 Element Admin',
+    title: '二手车管理系统',
     authorization: getItem(TOKEN),
     sidebar: {
       collapse: getItem(COLLAPSE),
